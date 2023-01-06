@@ -11,24 +11,6 @@ var recipeWrapper = $('#food-drink-recipes');
 var recipe = '';
 var recipeType = '';
 
-// Modal Function
-var modal = $('#search-modal');
-var span = $('#close');
-
-function displayModal() {
-    modal.show();
-}
-
-span.click = function () {
-    modal.hide();
-}
-
-window.click = function (event) {
-    if (event.target == modal) {
-        modal.hide();
-    }
-}
-
 // Function to get user recipe preferences input
 function getRecipe(event) {
     // Prevent page from refreshing when clicking on the search button
@@ -42,9 +24,7 @@ function getRecipe(event) {
     } else if (recipe !== '' && recipeType === 'Drink') {
         displayDrinkRecipes(recipe);
     } else {
-        // !!!Must later be changed into a modal as project requirements indicate not to use alerts/prompts!!!
-        //return alert('Please select something before pressing the search button');
-        displayModal();
+        $('#myModal').modal('show');
     }
 }
 
