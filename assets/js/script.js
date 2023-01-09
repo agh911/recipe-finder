@@ -43,7 +43,7 @@ function getRecipe(event) {
 function displayFoodRecipes(foodName) {
     recipeWrapper.html('');
 
-    $.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&q=${recipe}`)
+    $.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&q=${foodName}`)
         .then(function (data) {
             console.log(data);
             for (var i = 0; i < data.hits.length; i++) {
