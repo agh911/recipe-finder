@@ -1,8 +1,10 @@
 :root {
-    --background-color: #f8f5f2;
-    --header-color: #232323;
+    --background-color: #fffffe;
+    --navbar-color: #16161a;
+    --nav-header-color: #fffffe;
+    --body-header-color: #232323;
     --paragraph-color: #222525;
-    --button-color: #078080;
+    --input-button-color: #2cb67d;
 }
 
 * {
@@ -14,8 +16,44 @@ body {
     background-color: var(--background-color);
 }
 
+nav {
+    background-color: var(--navbar-color);
+    margin-bottom: 1rem;
+
+}
+
+nav>.container-fluid {
+    padding: .5rem 2.8rem !important;
+}
+
 nav h1 {
-    color: var(--header-color);
+    font-family: 'Yeseva One', cursive;
+    color: var(--nav-header-color);
+}
+
+h1 {
+    margin: 0;
+}
+
+h5,
+button {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+}
+
+.starting-window {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+}
+
+.starting-window p {
+    color: var(--paragraph-color);
+}
+
+.display-image {
+    width: 400px;
 }
 
 .form-group {
@@ -30,14 +68,37 @@ nav h1 {
     width: 100px;
 }
 
+::placeholder {
+    padding-left: 5px;
+}
+
+input[type=radio] {
+    height: .7rem;
+    accent-color: var(--input-button-color);
+}
+
+label {
+    font-size: 14px;
+    color: var(--nav-header-color);
+}
+
 #search-input {
     border-radius: 5px 0 0 5px;
-    border: 1px solid #ccc5be;
+    background-color: var(--background-color);
+    border: 1px solid var(--nav-header-color);
+    border-right: 1.5px solid var(--navbar-color);
     width: 195px;
 }
 
 #search-button {
     border-radius: 0 5px 5px 0;
+    background-color: var(--nav-header-color);
+    color: var(--body-header-color);
+    font-weight: 400;
+}
+
+.hide {
+    display: none;
 }
 
 #clear-btn,
@@ -63,7 +124,8 @@ nav h1 {
     height: 50px;
     overflow: hidden;
 }
-.note{
+
+.note {
     color: #454545;
     margin-top: 20px;
     margin-left: 15px;

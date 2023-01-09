@@ -8,8 +8,15 @@ var searchBtn = $('#search-button');
 var searchHistory = $('#history');
 var clearBtn = $('#clear-btn');
 var recipeWrapper = $('#food-drink-recipes');
+var dropdownMenu = $('.dropdown-menu');
 var recipe = '';
 var recipeType = '';
+
+// Function to start searching for recipes
+function startSearch() {
+    $('.form').removeClass('hide');
+}
+$('#start-search').click(startSearch);
 
 // Function to get user recipe preferences input
 function getRecipe(event) {
@@ -79,8 +86,87 @@ function displayDrinkRecipes(drinkName) {
         })
 }
 
+// Save recipe to localStorage
+function getSearchedRecipes() {
+    return JSON.parse(localStorage.getItem('previousSearches')) || [];
+}
+
+function saveRecipe(arr) {
+    localStorage.setItem('previousSearches', JSON.stringify(arr));
+}
+
+function displayPreviousSearches() {
+    var previousSearches = getSearchedRecipes();
+    console.log(previousSearches);
+    dropdownMenu.html('');
+
+    // Display the history dropdown menu button only if the recipes array is not empty
+    if (previousSearches.length > 0) {
+        $('.history-list').removeClass('hide');
+    }
+
+    previousSearches.forEach(function (recipe) {
+        // var type = recipeType.toLowerCase();
+        dropdownMenu.append(`
+        <li><a class="dropdown-item previous-recipe" href="#">${recipe}</a></li>
+        `)
+    })
+
+    dropdownMenu.append(`
+        <li><hr class="dropdown-divider"></li>
+        <li><a id="clear-history" class="dropdown-item" href="#">Clear search history</a></li>
+    `)
+}
+
+function addRecipe(event) {
+    var addClick = event.type;
+
+    if (addClick === 'click') {
+        var previousSearches = getSearchedRecipes();
+        var previousRecipe = {
+            recipe: searchInput.val().toLowerCase(),
+            type: $(".recipe_choice:checked").val()
+        }
+        // Uppercase first letter of city name
+        previousRecipe = previousRecipe.recipe.charAt(0).toUpperCase() + previousRecipe.recipe.slice(1);
+
+        // If there is no recipe input or the entered recipe is already saved to localStorage -> skip it
+        if (!previousRecipe || previousSearches.includes(previousRecipe)) return;
+
+        previousSearches.push(previousRecipe);
+        saveRecipe(previousSearches);
+
+        searchInput.val('');
+
+        displayPreviousSearches();
+    }
+}
+
+// Function to get recipes from dropdown menu history ?
+function getFromHistory(event) {
+    console.log(event);
+    console.log(event.target.innerText.toLowerCase());
+    var previousRecipe = event.target.innerText.toLowerCase();
+    // Run the code ONLY IF list element clicked includes the class .previous-recipe 
+    if (event.target.className.includes('previous-recipe')) {
+        displayFoodRecipes(previousRecipe);
+        displayDrinkRecipes(previousRecipe);
+    }
+    // Otherwise clear recipes search history  
+    else {
+        localStorage.clear();
+        // Remove injected HTML with previously saved rcipes
+        dropdownMenu.html('');
+        // Hide dropdown menu
+        $('.history-list').addClass('hide');   
+    }
+}
+dropdownMenu.delegate('li', 'click', getFromHistory);
+
 function init() {
     searchBtn.click(getRecipe);
+    searchBtn.click(addRecipe);
+    displayPreviousSearches();
 }
 
 init();
