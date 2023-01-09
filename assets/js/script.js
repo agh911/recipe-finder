@@ -156,10 +156,12 @@ function getFromHistory(event) {
     if (event.target.className.includes('previous-Dish')) {
         console.log(previousRecipe);
         displayFoodRecipes(previousRecipe);
+        $('.form').removeClass('hide');
     }
     else if (event.target.className.includes('previous-Drink')) {
         console.log(previousRecipe);
         displayDrinkRecipes(previousRecipe);
+        $('.form').removeClass('hide');
     }
     //Otherwise clear recipes search history  
     else {
@@ -168,6 +170,7 @@ function getFromHistory(event) {
         dropdownMenu.html('');
         // Hide dropdown menu
         $('.history-list').addClass('hide');   
+        $('.form').removeClass('hide');
     }
 }
 dropdownMenu.delegate('li', 'click', getFromHistory);
