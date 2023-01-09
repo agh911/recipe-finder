@@ -147,23 +147,21 @@ function getFromHistory(event) {
     console.log(event);
     console.log(event.target.innerText.toLowerCase());
     var previousRecipe = event.target.innerText.toLowerCase();
-    // Avoid running the function if the list element clicked does not include the class .previous-recipe 
+    // Run the code ONLY IF list element clicked includes the class .previous-recipe 
     if (event.target.className.includes('previous-recipe')) {
         displayFoodRecipes(previousRecipe);
         displayDrinkRecipes(previousRecipe);
     }
+    // Otherwise clear recipes search history  
+    else {
+        localStorage.clear();
+        // Remove injected HTML with previously saved rcipes
+        dropdownMenu.html('');
+        // Hide dropdown menu
+        $('.history-list').addClass('hide');   
+    }
 }
 dropdownMenu.delegate('li', 'click', getFromHistory);
-
-// Function to clear recipes search history - NEEDS WORK AS IT IS CURRENTLY NOT WORKING
-function clearSearchHistory(event) {
-    localStorage.clear();
-    // Remove injected HTML with previously saved rcipes
-    dropdownMenu.html('');
-    $('.history-list').addClass('hide');
-}
-clearHistory = $('#clear-history');
-clearHistory.click(clearSearchHistory);
 
 function init() {
     searchBtn.click(getRecipe);
