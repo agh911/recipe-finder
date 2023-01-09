@@ -14,6 +14,8 @@ var recipeType = '';
 
 // Function to start searching for recipes
 function startSearch() {
+
+
     $('.form').removeClass('hide');
 }
 $('#start-search').click(startSearch);
@@ -33,6 +35,8 @@ function getRecipe(event) {
     } else {
         $('#myModal').modal('show');
     }
+
+    displayPreviousSearches();
 }
 
 // Food recipes API
@@ -104,14 +108,14 @@ function displayPreviousSearches() {
     if (previousSearches.length > 0) {
         $('.history-list').removeClass('hide');
     }
-
     previousSearches.forEach(function (recipe) {
         // var type = recipeType.toLowerCase();
+        console.log(recipe);
         dropdownMenu.append(`
-        <li><a class="dropdown-item previous-recipe" href="#">${recipe}</a></li>
+        <li><a class="dropdown-item previous-${recipe.type}" href="#">${recipe.recipe}</a></li>
         `)
-    })
 
+    })
     dropdownMenu.append(`
         <li><hr class="dropdown-divider"></li>
         <li><a id="clear-history" class="dropdown-item" href="#">Clear search history</a></li>
@@ -127,8 +131,9 @@ function addRecipe(event) {
             recipe: searchInput.val().toLowerCase(),
             type: $(".recipe_choice:checked").val()
         }
-        // Uppercase first letter of city name
-        previousRecipe = previousRecipe.recipe.charAt(0).toUpperCase() + previousRecipe.recipe.slice(1);
+        
+        // Uppercase first letter of recipe name
+        //previousRecipe = previousRecipe.recipe.charAt(0).toUpperCase() + previousRecipe.recipe.slice(1);
 
         // If there is no recipe input or the entered recipe is already saved to localStorage -> skip it
         if (!previousRecipe || previousSearches.includes(previousRecipe)) return;
@@ -148,11 +153,15 @@ function getFromHistory(event) {
     console.log(event.target.innerText.toLowerCase());
     var previousRecipe = event.target.innerText.toLowerCase();
     // Run the code ONLY IF list element clicked includes the class .previous-recipe 
-    if (event.target.className.includes('previous-recipe')) {
+    if (event.target.className.includes('previous-Dish')) {
+        console.log(previousRecipe);
         displayFoodRecipes(previousRecipe);
+    }
+    else if (event.target.className.includes('previous-Drink')) {
+        console.log(previousRecipe);
         displayDrinkRecipes(previousRecipe);
     }
-    // Otherwise clear recipes search history  
+    //Otherwise clear recipes search history  
     else {
         localStorage.clear();
         // Remove injected HTML with previously saved rcipes
