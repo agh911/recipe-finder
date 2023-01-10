@@ -147,11 +147,18 @@ function addRecipe() {
         }
 
         // If there is no recipe input or the entered recipe is already saved to localStorage -> skip it
-        if (previousSearches.includes(previousRecipe)) {return}
-        if(length !== null){
-                previousSearches.push(previousRecipe);
-                saveRecipe(previousSearches);
-        }
+        //if (previousSearches.includes(previousRecipe)) {return}
+        if(previousSearches.some(item => item.recipe === searchInput.val().toLowerCase())){
+            return;
+        } 
+        else if(length !== null){
+            previousSearches.push(previousRecipe);
+            saveRecipe(previousSearches);
+         }
+        // if(length !== null){
+        //         previousSearches.push(previousRecipe);
+        //         saveRecipe(previousSearches);
+        // }
         length = 0;
         searchInput.val('');
 
