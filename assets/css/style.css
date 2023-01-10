@@ -131,3 +131,24 @@ label {
     margin-left: 15px;
     margin-bottom: 0px;
 }
+
+/* Media query for phone screen size */
+@media (max-width: 600px) {
+    .starting-window {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .starting-window .col-lg-4:first-of-type {
+        padding-bottom: 2rem;
+    }
+
+    .display-image {
+        width: 350px;
+    }
+
+    .col-lg-3.col-md-4.col-sm-12 {
+        display: flex;
+        justify-content: center;
+    }
+}

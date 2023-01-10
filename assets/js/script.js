@@ -14,11 +14,20 @@ var recipeType = '';
 
 // Function to start searching for recipes
 function startSearch() {
-
-
     $('.form').removeClass('hide');
 }
 $('#start-search').click(startSearch);
+
+// Function to change input placeholder based on recipe type 
+function changePlaceholder() {
+    recipeType = $(".recipe_choice:checked").val();
+    if (recipeType === 'Drink') {
+        searchInput.attr('placeholder', 'Margarita')
+    } else {
+        searchInput.attr('placeholder', 'Cheesecake')
+    }
+}
+$(".recipe_choice").click(changePlaceholder);
 
 // Function to get user recipe preferences input
 function getRecipe(event) {
@@ -109,12 +118,10 @@ function displayPreviousSearches() {
         $('.history-list').removeClass('hide');
     }
     previousSearches.forEach(function (recipe) {
-        // var type = recipeType.toLowerCase();
         console.log(recipe);
         dropdownMenu.append(`
-        <li><a class="dropdown-item previous-${recipe.type}" href="#">${recipe.recipe}</a></li>
+        <li><a class="dropdown-item previous-${recipe.type}" href="#">${recipe.recipe.charAt(0).toUpperCase() + recipe.recipe.slice(1)}</a></li>
         `)
-
     })
     dropdownMenu.append(`
         <li><hr class="dropdown-divider"></li>
@@ -129,11 +136,8 @@ function addRecipe(event) {
         var previousSearches = getSearchedRecipes();
         var previousRecipe = {
             recipe: searchInput.val().toLowerCase(),
-            type: $(".recipe_choice:checked").val()
+            type: $(".recipe_choice:checked").val().toLowerCase()
         }
-        
-        // Uppercase first letter of recipe name
-        //previousRecipe = previousRecipe.recipe.charAt(0).toUpperCase() + previousRecipe.recipe.slice(1);
 
         // If there is no recipe input or the entered recipe is already saved to localStorage -> skip it
         if (!previousRecipe || previousSearches.includes(previousRecipe)) return;
@@ -152,24 +156,25 @@ function getFromHistory(event) {
     console.log(event);
     console.log(event.target.innerText.toLowerCase());
     var previousRecipe = event.target.innerText.toLowerCase();
-    // Run the code ONLY IF list element clicked includes the class .previous-recipe 
-    if (event.target.className.includes('previous-Dish')) {
+    // Run the code ONLY IF list element clicked includes the class .previous-dish or .previous-drink
+    if (event.target.className.includes('previous-dish')) {
         console.log(previousRecipe);
         displayFoodRecipes(previousRecipe);
         $('.form').removeClass('hide');
     }
-    else if (event.target.className.includes('previous-Drink')) {
+    else if (event.target.className.includes('previous-drink')) {
         console.log(previousRecipe);
         displayDrinkRecipes(previousRecipe);
         $('.form').removeClass('hide');
     }
-    //Otherwise clear recipes search history  
+    // Otherwise clear recipes search history  
     else {
         localStorage.clear();
         // Remove injected HTML with previously saved rcipes
         dropdownMenu.html('');
         // Hide dropdown menu
-        $('.history-list').addClass('hide');   
+        $('.history-list').addClass('hide');
+        // Show search input  
         $('.form').removeClass('hide');
     }
 }
