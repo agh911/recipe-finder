@@ -11,6 +11,7 @@ var recipeWrapper = $('#food-drink-recipes');
 var dropdownMenu = $('.dropdown-menu');
 var recipe = '';
 var recipeType = '';
+var length = 0;
 
 // Function to start searching for recipes
 function startSearch() {
@@ -44,7 +45,6 @@ function getRecipe(event) {
     } else {
         $('#myModal').modal('show');
     }
-
     displayPreviousSearches();
 }
 
@@ -55,6 +55,11 @@ function displayFoodRecipes(foodName) {
     $.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&q=${foodName}`)
         .then(function (data) {
             console.log(data);
+            if (data.count === 0) {length = null};
+            if(searchInput.val() !== ''){
+                addRecipe();
+            };
+
             for (var i = 0; i < data.hits.length; i++) {
                 console.log(data.hits[i].recipe.label);
                 console.log(data.hits[i].recipe.url);
@@ -80,6 +85,10 @@ function displayDrinkRecipes(drinkName) {
     $.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkName}`)
         .then(function (data) {
             console.log(data);
+            if (data.drinks === null) {length = null};
+            if(searchInput.val() !== ''){
+                addRecipe();
+            };
             for (var i = 0; i < data.drinks.length; i++) {
                 console.log(data.drinks[i]);
                 console.log(data.drinks[i].strDrink.replace(/\s+/g, '-').replace("'", ''));
@@ -129,10 +138,8 @@ function displayPreviousSearches() {
     `)
 }
 
-function addRecipe(event) {
-    var addClick = event.type;
+function addRecipe() {
 
-    if (addClick === 'click') {
         var previousSearches = getSearchedRecipes();
         var previousRecipe = {
             recipe: searchInput.val().toLowerCase(),
@@ -140,15 +147,22 @@ function addRecipe(event) {
         }
 
         // If there is no recipe input or the entered recipe is already saved to localStorage -> skip it
-        if (!previousRecipe || previousSearches.includes(previousRecipe)) return;
-
-        previousSearches.push(previousRecipe);
-        saveRecipe(previousSearches);
-
+        //if (previousSearches.includes(previousRecipe)) {return}
+        if(previousSearches.some(item => item.recipe === searchInput.val().toLowerCase())){
+            return;
+        } 
+        else if(length !== null){
+            previousSearches.push(previousRecipe);
+            saveRecipe(previousSearches);
+         }
+        // if(length !== null){
+        //         previousSearches.push(previousRecipe);
+        //         saveRecipe(previousSearches);
+        // }
+        length = 0;
         searchInput.val('');
 
         displayPreviousSearches();
-    }
 }
 
 // Function to get recipes from dropdown menu history ?
@@ -182,7 +196,7 @@ dropdownMenu.delegate('li', 'click', getFromHistory);
 
 function init() {
     searchBtn.click(getRecipe);
-    searchBtn.click(addRecipe);
+    //searchBtn.click(addRecipe);
     displayPreviousSearches();
 }
 
