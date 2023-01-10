@@ -18,6 +18,17 @@ function startSearch() {
 }
 $('#start-search').click(startSearch);
 
+// Function to change input placeholder based on recipe type 
+function changePlaceholder() {
+    recipeType = $(".recipe_choice:checked").val();
+    if (recipeType === 'Drink') {
+        searchInput.attr('placeholder', 'Margarita')
+    } else {
+        searchInput.attr('placeholder', 'Cheesecake')
+    }
+}
+$(".recipe_choice").click(changePlaceholder);
+
 // Function to get user recipe preferences input
 function getRecipe(event) {
     // Prevent page from refreshing when clicking on the search button
