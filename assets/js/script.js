@@ -45,7 +45,6 @@ function getRecipe(event) {
     } else {
         $('#myModal').modal('show');
     }
-    searchInput.html() = '';
     displayPreviousSearches();
 }
 
@@ -58,7 +57,7 @@ function displayFoodRecipes(foodName) {
             console.log(data);
             if (data.count === 0) {length = null};
             if(searchInput.val() !== ''){
-            addRecipe();
+                addRecipe();
             };
 
             for (var i = 0; i < data.hits.length; i++) {
@@ -89,7 +88,7 @@ function displayDrinkRecipes(drinkName) {
             if (data.drinks === null) {length = null};
             if(searchInput.val() !== ''){
                 addRecipe();
-                };
+            };
             for (var i = 0; i < data.drinks.length; i++) {
                 console.log(data.drinks[i]);
                 console.log(data.drinks[i].strDrink.replace(/\s+/g, '-').replace("'", ''));
@@ -148,10 +147,12 @@ function addRecipe() {
         }
 
         // If there is no recipe input or the entered recipe is already saved to localStorage -> skip it
-        if (!previousRecipe || previousSearches.includes(previousRecipe)) return;
-        if(length !== null){
-            previousSearches.push(previousRecipe);
-            saveRecipe(previousSearches);
+        console.log(previousSearches);
+        console.log(previousRecipe);
+        if (previousSearches.includes(previousRecipe)) { console.log('It was included') }
+        else if(length !== null){
+                previousSearches.push(previousRecipe);
+                saveRecipe(previousSearches);
         }
         searchInput.val('');
 
