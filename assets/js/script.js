@@ -147,13 +147,11 @@ function addRecipe() {
         }
 
         // If there is no recipe input or the entered recipe is already saved to localStorage -> skip it
-        console.log(previousSearches);
-        console.log(previousRecipe);
-        if (previousSearches.includes(previousRecipe)) { console.log('It was included') }
-        else if(length !== null){
+            if (previousSearches.includes(previousRecipe)) {return}
+        //if(length !== null){
                 previousSearches.push(previousRecipe);
                 saveRecipe(previousSearches);
-        }
+        //}
         searchInput.val('');
 
         displayPreviousSearches();
