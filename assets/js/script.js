@@ -147,11 +147,12 @@ function addRecipe() {
         }
 
         // If there is no recipe input or the entered recipe is already saved to localStorage -> skip it
-            if (previousSearches.includes(previousRecipe)) {return}
-        //if(length !== null){
+        if (previousSearches.includes(previousRecipe)) {return}
+        if(length !== null){
                 previousSearches.push(previousRecipe);
                 saveRecipe(previousSearches);
-        //}
+        }
+        length = 0;
         searchInput.val('');
 
         displayPreviousSearches();
