@@ -55,7 +55,12 @@ function displayFoodRecipes(foodName) {
     $.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&q=${foodName}`)
         .then(function (data) {
             console.log(data);
-            if (data.count === 0) {length = null};
+            if (data.count === 0) {
+                length = null;
+                recipeWrapper.append(`
+                <p class="text-center mt-4">We're sorry, but we couldn't find anything based on your search.<br> Please try searching for something else.</p>
+                `)
+            };
             if(searchInput.val() !== ''){
                 addRecipe();
             };
@@ -85,7 +90,12 @@ function displayDrinkRecipes(drinkName) {
     $.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkName}`)
         .then(function (data) {
             console.log(data);
-            if (data.drinks === null) {length = null};
+            if (data.drinks === null) {
+                length = null;
+                recipeWrapper.append(`
+                <p class="text-center mt-4">We're sorry, but we couldn't find anything based on your search.<br> Please try searching for something else.</p>
+                `)
+            };
             if(searchInput.val() !== ''){
                 addRecipe();
             };
