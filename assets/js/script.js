@@ -1,6 +1,6 @@
 // Food recipes API needed data
-var appId = '6f5c4ad2';
-var appKey = 'c7a0e5796e069dc7440036cfc09db2d8';
+var appId = 'ec9eb9f4';
+var appKey = '46c960d3cadde97fa7b20634855b871d';
 
 // Grab DOM needed elements
 var searchInput = $('#search-input');
