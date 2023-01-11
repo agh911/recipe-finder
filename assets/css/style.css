@@ -101,6 +101,10 @@ label {
     display: none;
 }
 
+.dropdown-menu {
+    --bs-dropdown-link-active-bg: var(--navbar-color);
+}
+
 #clear-btn,
 .history-button {
     height: 36px !important;
