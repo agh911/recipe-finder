@@ -2,20 +2,43 @@
 
 ## Description
 
+### The Task 
+
+The aim for this project is to create an application as a group, from from conception to deployment as a Minimum Viable Product (MVP). The application is a recipe finder which alows users to search for food/dishes or drinks ideas using a keyword search, such as "Cheesecake" or  "Margarita". The application uses Edamam's recipe API for any food/dish searches and The Cocktail DB's API for drinks searches. The application runs in the browser and features dynamically updated HTML and CSS.
+
+### The Requirements
+
+* Use Bootstrap.
+* Be interactive (in other words, accept and respond to user input).
+* Use at least two server-side APIs
+* Does not use alerts, confirms, or prompts (use modals).
+* Use client-side storage to store persistent data.
+* Be responsive.
+* Have a polished UI.
+
 
 ## Usage
 
-The following animation shows the application's functionality:
+To access the application, navigate to [Recipe Finder](https://agh911.github.io/recipe-finder). 
+* Click on the Search button on the landing page to display the Search box and radio buttons, which will appear to the top right in the navigation bar. 
+* Select Dish or Drink and enter a food/drink type into the text field and click search. Search results will be displayed in the main body of the web page and users can further click on View recipe. Note: this will open a new browser window and navigate to an external website.
+* If users have successfully searched for items on previous visits, a "Previous searches" dropdown list will be visible. This can be used to select previous search parameters which are saved in local storage. 
 
-![recipe-finder-app](assets/images/*include gif name here*)
+The following animation demonstrates the application's functionality:
+
+![recipe-finder-app](assets/images/recipe-finder-app.gif)
 
 
 ## Links
 
-* [Deployed application.](LINK HERE)
+* [Deployed application](https://agh911.github.io/recipe-finder)
+
+
 ## Credits
 
 * [GitHub Badges.](https://shields.io/)
+* [Edamam](https://www.edamam.com/)
+* [The Cocktail DB](https://www.thecocktaildb.com)
 
 
 ## License
