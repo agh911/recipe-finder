@@ -1,6 +1,7 @@
 # Recipe Finder
 
 ## Description
+![Technologies](https://img.shields.io/badge/Technologies-HTML%20CSS%20JS%20Bootstrap%20jQuery%20APIs-blue)
 
 ### The Task 
 
@@ -36,9 +37,12 @@ The following animation demonstrates the application's functionality:
 
 ## Credits
 
-* [GitHub Badges.](https://shields.io/)
 * [Edamam](https://www.edamam.com/)
 * [The Cocktail DB](https://www.thecocktaildb.com)
+* [Bootstrap Docs](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
+* [jQuery Docs](https://api.jquery.com/)
+* [Unsplash Images](https://unsplash.com/photos/znc9hSxXBJw)
+* [GitHub Badges.](https://shields.io/)
 
 
 ## License
