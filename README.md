@@ -40,6 +40,9 @@ The following animation demonstrates the application's functionality:
 * [GitHub Badges.](https://shields.io/)
 * [Edamam](https://www.edamam.com/)
 * [The Cocktail DB](https://www.thecocktaildb.com)
+* [Bootstrap Docs](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
+* [jQuery Docs](https://api.jquery.com/)
+* [Unsplash Images](https://unsplash.com/photos/znc9hSxXBJw)
 
 
 ## License
