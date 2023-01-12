@@ -1,6 +1,7 @@
 # Recipe Finder
 
 ## Description
+![Technologies](https://img.shields.io/badge/Technologies-HTML%20CSS%20JS%20Bootstrap%20jQuery%20APIs-blue)
 
 ### The Task 
 
