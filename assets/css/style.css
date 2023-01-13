@@ -162,7 +162,7 @@ label {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-left: 25px;
+        margin-left: 30px;
     }
 
     .form-check label {
@@ -171,6 +171,10 @@ label {
 
     .dropdown {
         margin-left: 45px;
+    }
+
+    input[type=radio] {
+        margin-right: 5px;
     }
 
     .col-lg-3.col-md-4.col-sm-12 {
