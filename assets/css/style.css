@@ -169,6 +169,10 @@ label {
         padding-right: 20px;
     }
 
+    .dropdown {
+        margin-left: 45px;
+    }
+
     .col-lg-3.col-md-4.col-sm-12 {
         display: flex;
         justify-content: center;
