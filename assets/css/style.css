@@ -163,18 +163,9 @@ label {
         justify-content: center;
         align-items: center;
     }
-
+    
     .dropdown {
         margin-left: 45px;
-    }
-
-    input[type=radio] {
-        margin-right: 5px;
-        margin-left: 30px;
-    }
-
-    input[type=radio]:last-of-type {
-        margin-left: 15px;
     }
 
     .col-lg-3.col-md-4.col-sm-12 {
